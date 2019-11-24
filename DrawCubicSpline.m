@@ -65,4 +65,5 @@ function DrawCubicSpline(p)
         end
     end
     plot(point(:,1),point(:,2));
+    hold off;
 end
