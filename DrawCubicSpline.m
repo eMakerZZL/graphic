@@ -1,20 +1,19 @@
 function DrawCubicSpline(p)
     [~,n] = size(p);
-    dim = 6;
-    b1 = 10; bn = 10;
-    h      = zeros(1, dim);
-    lambda = zeros(1, dim);
-    mu     = zeros(1, dim);
-    D      = zeros(1, dim);
-    l      = zeros(1, dim);
-    m      = zeros(1, dim);
-    u      = zeros(1, dim);
-    M      = zeros(1, dim);
-    K      = zeros(1, dim);
-    a      = zeros(1, dim);
-    b      = zeros(1, dim);
-    c      = zeros(1, dim);
-    d      = zeros(1, dim);
+    b1 = 0; bn = 0;
+    h      = zeros(1, n);
+    lambda = zeros(1, n);
+    mu     = zeros(1, n);
+    D      = zeros(1, n);
+    l      = zeros(1, n);
+    m      = zeros(1, n);
+    u      = zeros(1, n);
+    M      = zeros(1, n);
+    K      = zeros(1, n);
+    a      = zeros(1, n);
+    b      = zeros(1, n);
+    c      = zeros(1, n);
+    d      = zeros(1, n);
 
     for i = 1 : n - 1
         h(i) = p(i + 1).x - p(i).x;
@@ -60,10 +59,9 @@ function DrawCubicSpline(p)
     plot([p.x],[p.y],'ro');
     point = [];
     for i = 1 : n - 1
-        for x = p(i).x : 0.5 : p(i+1).x
+        for x = p(i).x : 0.05 : p(i+1).x
             y = a(i) + b(i) * (x - p(i).x) + c(i) * (x - p(i).x)^2 + d(i) * (x - p(i).x)^3;
             point = [x y;point];
-            %plot(x,y,'-bo');
         end
     end
     plot(point(:,1),point(:,2));
